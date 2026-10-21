@@ -1,0 +1,61 @@
+# Production on any VPS (e.g. a ₹500/month droplet or the university server):
+#   1. Point DNS:  A record  sambhav.example.edu → server IP
+#   2. cp .env.example .env  →  set DOMAIN, secrets (./scripts/gen-env.sh), SMS + ANTHROPIC keys, NODE_ENV=production
+#   3. docker compose -f docker-compose.prod.yml up -d --build
+# Caddy obtains and renews HTTPS certificates automatically (Let's Encrypt).
+services:
+  caddy:
+    image: caddy:2.8-alpine
+    restart: unless-stopped
+    ports: ["80:80", "443:443", "443:443/udp"]
+    environment: { DOMAIN: "${DOMAIN:?set DOMAIN in .env}" }
+    volumes:
+      - ./infra/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on: { app: { condition: service_healthy } }
+
+  app:
+    image: ${IMAGE:-ghcr.io/your-org/sambhav:latest}
+    build: { context: ., dockerfile: Dockerfile }
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://sambhav:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}@postgres:5432/sambhav
+      REDIS_URL: redis://redis:6379
+      WEB_ORIGIN: https://${DOMAIN}
+    expose: ["4000"]
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    read_only: true
+    tmpfs: ["/tmp"]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    deploy: { replicas: 1 }        # scale out with replicas: N — Socket.IO uses the Redis adapter, rate limits live in Redis
+
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment: { POSTGRES_USER: sambhav, POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}", POSTGRES_DB: sambhav }
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U sambhav"], interval: 5s, retries: 10 }
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory-policy", "noeviction"]
+    volumes: [redisdata:/data]
+    healthcheck: { test: ["CMD", "redis-cli", "ping"], interval: 5s, retries: 10 }
+
+  # Nightly logical backup kept for 14 days in ./backups (copy off-box with rclone/rsync).
+  backup:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment: { PGPASSWORD: "${POSTGRES_PASSWORD}" }
+    volumes: ["./backups:/backups"]
+    entrypoint: ["/bin/sh", "-c", "while true; do pg_dump -h postgres -U sambhav -Fc sambhav > /backups/sambhav-$$(date +%F).dump && find /backups -name '*.dump' -mtime +14 -delete; sleep 86400; done"]
+    depends_on: { postgres: { condition: service_healthy } }
+
+volumes: { pgdata: {}, redisdata: {}, caddy_data: {}, caddy_config: {} }

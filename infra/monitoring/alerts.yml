@@ -1,0 +1,42 @@
+groups:
+  - name: sambhav-api
+    rules:
+      - alert: SambhavApiDown
+        expr: up{job="sambhav"} == 0
+        for: 2m
+        labels: { severity: critical }
+        annotations: { summary: "Sambhav API is not responding to scrapes" }
+      - alert: SambhavHigh5xxRate
+        expr: sum(rate(sambhav_http_request_duration_seconds_count{status=~"5.."}[10m])) / clamp_min(sum(rate(sambhav_http_request_duration_seconds_count[10m])), 1e-9) > 0.02
+        for: 10m
+        labels: { severity: warning }
+        annotations: { summary: "More than 2% of API requests are failing (5xx)" }
+      - alert: SambhavSlowCheckIn
+        expr: histogram_quantile(0.95, sum by (le) (rate(sambhav_http_request_duration_seconds_bucket{route="/api/v1/attendance/check-in"}[5m]))) > 0.4
+        for: 5m
+        labels: { severity: warning }
+        annotations: { summary: "Check-in p95 above 400 ms (club-night SLO)" }
+  - name: vihaan-llmops
+    rules:
+      - alert: VihaanModelErrors
+        expr: sum(increase(sambhav_ai_errors_total{kind="exception"}[15m])) / clamp_min(sum(increase(sambhav_ai_requests_total{mode=~"ai|error"}[15m])), 1) > 0.1
+        for: 10m
+        labels: { severity: warning }
+        annotations: { summary: "Over 10% of Vihaan model calls are failing — check the Anthropic status page and API key" }
+      - alert: VihaanSlowAnswers
+        expr: histogram_quantile(0.95, sum by (le) (rate(sambhav_ai_latency_seconds_bucket{mode="ai"}[15m]))) > 12
+        for: 15m
+        labels: { severity: warning }
+        annotations: { summary: "Vihaan p95 answer time above 12 s" }
+      - alert: VihaanCostBurn
+        expr: sum(increase(sambhav_ai_cost_usd_total[24h])) > 2
+        labels: { severity: warning }
+        annotations: { summary: "Vihaan spent more than US$2 in 24 h — check for abuse or lower AI_DAILY_CAP" }
+      - alert: VihaanHelpfulnessDrop
+        expr: (sum(increase(sambhav_ai_feedback_total{rating="down"}[24h])) / clamp_min(sum(increase(sambhav_ai_feedback_total[24h])), 1) > 0.3) and sum(increase(sambhav_ai_feedback_total[24h])) >= 10
+        labels: { severity: warning }
+        annotations: { summary: "Over 30% of rated Vihaan answers were unhelpful in the last day — review /admin/ai and consider rolling back the prompt" }
+      - alert: VihaanRefusalSpike
+        expr: sum(increase(sambhav_ai_errors_total{kind="refusal"}[1h])) > 10
+        labels: { severity: info }
+        annotations: { summary: "Unusual number of refusals — possible misuse or a prompt regression" }

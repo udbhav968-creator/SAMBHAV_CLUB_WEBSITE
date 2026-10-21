@@ -1,0 +1,18 @@
+rule_files: [alerts.yml]
+evaluation_interval: 1m
+tests:
+  - interval: 1m
+    input_series:
+      - series: 'sambhav_ai_feedback_total{rating="down"}'
+        values: '0+1x1440'
+      - series: 'sambhav_ai_feedback_total{rating="up"}'
+        values: '0+1x1440'
+      - series: 'sambhav_ai_cost_usd_total{model="claude-haiku-5-5"}'
+        values: '0+0.01x1440'
+    alert_rule_test:
+      - eval_time: 1d
+        alertname: VihaanHelpfulnessDrop
+        exp_alerts: [{ exp_labels: { severity: warning }, exp_annotations: { summary: "Over 30% of rated Vihaan answers were unhelpful in the last day — review /admin/ai and consider rolling back the prompt" } }]
+      - eval_time: 1d
+        alertname: VihaanCostBurn
+        exp_alerts: [{ exp_labels: { severity: warning }, exp_annotations: { summary: "Vihaan spent more than US$2 in 24 h — check for abuse or lower AI_DAILY_CAP" } }]

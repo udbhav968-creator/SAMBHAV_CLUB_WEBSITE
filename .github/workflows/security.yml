@@ -1,0 +1,80 @@
+name: Security
+# Static analysis, dependency and secret scanning, container scan and SBOM.
+# Runs on every PR, on main, and weekly (new CVEs appear without code changes).
+on:
+  push: { branches: [main] }
+  pull_request:
+  schedule: [{ cron: "23 3 * * 1" }]   # Mondays 03:23 UTC
+
+permissions:
+  contents: read
+
+jobs:
+  codeql:
+    name: CodeQL (JS/TS)
+    runs-on: ubuntu-latest
+    permissions: { security-events: write, contents: read, actions: read }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: github/codeql-action/init@v3
+        with: { languages: javascript-typescript, queries: security-extended }
+      - uses: github/codeql-action/analyze@v3
+
+  dependencies:
+    name: npm audit (runtime deps, high+ fails)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i -g npm@11
+      - run: npm ci --ignore-scripts
+      - run: npm audit --omit=dev --audit-level=high
+
+  dependency-review:
+    name: Dependency review (PRs)
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/dependency-review-action@v4
+        with: { fail-on-severity: high, deny-licenses: "GPL-3.0, AGPL-3.0" }
+
+  secrets:
+    name: Secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  container:
+    name: Image scan (Trivy) + SBOM
+    runs-on: ubuntu-latest
+    permissions: { security-events: write, contents: read }
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -t sambhav:scan .
+      - name: Trivy — fail on fixable HIGH/CRITICAL
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: sambhav:scan
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+          format: table
+      - name: Trivy — SARIF to the Security tab
+        if: always()
+        uses: aquasecurity/trivy-action@0.28.0
+        with: { image-ref: "sambhav:scan", format: sarif, output: trivy.sarif, severity: "MEDIUM,HIGH,CRITICAL" }
+      - if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with: { sarif_file: trivy.sarif, category: trivy }
+      - name: SBOM (SPDX)
+        uses: anchore/sbom-action@v0
+        with: { image: "sambhav:scan", format: spdx-json, output-file: sbom.spdx.json }
+      - uses: actions/upload-artifact@v4
+        with: { name: sbom, path: sbom.spdx.json }

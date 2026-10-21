@@ -1,0 +1,41 @@
+# One-command stack:  cp .env.example .env  &&  docker compose up --build
+# Web: http://localhost:8080   API (direct): http://localhost:4000/healthz
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: sambhav
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-sambhav}
+      POSTGRES_DB: sambhav
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U sambhav"], interval: 5s, retries: 10 }
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes: [redisdata:/data]
+    healthcheck: { test: ["CMD", "redis-cli", "ping"], interval: 5s, retries: 10 }
+
+  api:
+    build: { context: ., dockerfile: apps/api/Dockerfile }
+    env_file: .env
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://sambhav:${POSTGRES_PASSWORD:-sambhav}@postgres:5432/sambhav
+      REDIS_URL: redis://redis:6379
+      WEB_ORIGIN: ${WEB_ORIGIN:-http://localhost:8080}
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    ports: ["4000:4000"]
+    restart: unless-stopped
+
+  web:
+    build: { context: ., dockerfile: apps/web/Dockerfile }
+    depends_on: [api]
+    ports: ["8080:80"]
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  redisdata:

@@ -1,0 +1,856 @@
+[
+  {
+    "id": "m1",
+    "code": "GT-101",
+    "title": "Foundations of Strategic Thinking",
+    "short": "Players, strategies, payoffs, and the logic of dominance.",
+    "hours": 2,
+    "order": 1,
+    "game": "nash",
+    "outcomes": [
+      {
+        "id": "LO1",
+        "text": "Define the elements of a strategic game: players, strategies, payoffs and information."
+      },
+      {
+        "id": "LO2",
+        "text": "Identify strictly dominant and dominated strategies and apply iterated elimination."
+      },
+      {
+        "id": "LO3",
+        "text": "Construct a payoff matrix that models a real decision with interdependent payoffs."
+      }
+    ],
+    "lessons": [
+      {
+        "title": "What makes a situation a game",
+        "html": "<p>A situation is a <b>game</b> when the outcome for each decision-maker depends on the choices of others. Two canteens setting prices, two clubs picking event dates and two bidders in an auction are all games; choosing an umbrella because of the weather forecast is not, because the weather does not respond to you.</p><p>Every game has four elements:</p><ul><li><b>Players</b> – the decision-makers.</li><li><b>Strategies</b> – a complete plan of action, specifying what a player does in every situation they might face.</li><li><b>Payoffs</b> – a number for each outcome, representing how much each player values it.</li><li><b>Information</b> – what each player knows when they choose.</li></ul>"
+      },
+      {
+        "title": "Normal form and the payoff matrix",
+        "html": "<p>A simultaneous two-player game is written as a <b>payoff matrix</b>. Rows are Player 1's strategies, columns are Player 2's, and each cell lists <span class=\"mono\">(row payoff, column payoff)</span>.</p><div class=\"formula\">            Cooperate   Defect<br>Cooperate    (3, 3)     (0, 5)<br>Defect       (5, 0)     (1, 1)</div><p>This is the <b>Prisoner's Dilemma</b>, the most studied game in social science. Read it from each player's point of view: if the other cooperates, you get 3 by cooperating and 5 by defecting; if they defect, you get 0 or 1.</p>"
+      },
+      {
+        "title": "Dominance and iterated elimination",
+        "html": "<p>A strategy is <b>strictly dominant</b> if it gives a strictly higher payoff than every alternative, whatever the opponents do. In the matrix above, Defect is strictly dominant for both players, so rational players reach (Defect, Defect) and earn 1 each, although both prefer (Cooperate, Cooperate). That gap between individual and collective rationality is the dilemma.</p><p>When no strategy is dominant, remove strategies that are strictly <b>dominated</b>, then look again: removing one player's bad options can create dominance for the other. This is <b>iterated elimination of strictly dominated strategies</b> (IESDS).</p>"
+      }
+    ],
+    "questions": [
+      {
+        "order": 1,
+        "level": "L1",
+        "lo": "LO1",
+        "prompt": "Define: in game theory, a strategy is best described as…",
+        "options": [
+          "A complete plan of action that specifies a choice in every situation the player might face",
+          "The payoff a player receives at the end of the game",
+          "The outcome that maximises total welfare",
+          "The probability that the opponent cooperates"
+        ],
+        "answerIndex": 0,
+        "explanation": "A strategy is a complete contingent plan; payoffs and outcomes are consequences of strategy profiles.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 2,
+        "level": "L2",
+        "lo": "LO2",
+        "prompt": "Explain why Defect is a strictly dominant strategy in the one-shot Prisoner's Dilemma (T=5, R=3, P=1, S=0).",
+        "options": [
+          "It gives a strictly higher payoff whatever the other player does (5>3 and 1>0)",
+          "It maximises the sum of both players' payoffs",
+          "The other player is known to defect",
+          "It is the only strategy that forms a Pareto-optimal outcome"
+        ],
+        "answerIndex": 0,
+        "explanation": "Compare column by column: against Cooperate, 5 > 3; against Defect, 1 > 0. Defect wins in every case.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 3,
+        "level": "L3",
+        "lo": "LO2",
+        "prompt": "Compute the IESDS outcome. Payoffs (Row, Col): (U,L)=(3,1), (U,R)=(0,2), (D,L)=(2,3), (D,R)=(1,4).",
+        "options": [
+          "(U, L)",
+          "(U, R)",
+          "(D, L)",
+          "(D, R)"
+        ],
+        "answerIndex": 3,
+        "explanation": "For Column, R beats L in both rows (2>1, 4>3), so L is eliminated. Facing R, Row prefers D (1>0). Outcome (D,R) = (1,4).",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 4,
+        "level": "L4",
+        "lo": "LO1",
+        "prompt": "Analyze: two campus canteens each choose a thali price. Which feature makes this a game rather than a single-person decision?",
+        "options": [
+          "Each canteen's profit depends on the other canteen's price",
+          "Both canteens want to maximise profit",
+          "Prices are numbers",
+          "Students prefer cheaper food"
+        ],
+        "answerIndex": 0,
+        "explanation": "Strategic interdependence – your payoff depends on another decision-maker's choice – is what defines a game.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 5,
+        "level": "L5",
+        "lo": "LO2",
+        "prompt": "Evaluate the claim: “If every player is rational, the group always reaches the best collective outcome.”",
+        "options": [
+          "False – in the Prisoner's Dilemma individually rational play gives (D,D), which both players rank below (C,C)",
+          "True – rational players always coordinate on the Pareto-optimal outcome",
+          "True, but only in zero-sum games",
+          "It cannot be evaluated without knowing the players' names"
+        ],
+        "answerIndex": 0,
+        "explanation": "The PD is the classic counter-example: dominance reasoning leads to an outcome that is Pareto-dominated.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 6,
+        "level": "L6",
+        "lo": "LO3",
+        "prompt": "Design a 2×2 payoff matrix for a real campus situation (for example, two clubs choosing whether to schedule their fest on the same weekend) in which each player has a strictly dominant strategy. Label players, strategies and payoffs, and state the predicted outcome.",
+        "options": null,
+        "answerIndex": null,
+        "explanation": null,
+        "open": true,
+        "rubric": [
+          "Two named players and two named strategies each",
+          "Payoffs written for every cell as (row, column)",
+          "A strictly dominant strategy shown for each player by explicit comparison",
+          "Predicted outcome stated, with a comment on whether it is Pareto-optimal"
+        ],
+        "model": "Clubs A and B choose Same weekend / Different weekend. Payoffs: (S,S)=(2,2), (S,D)=(5,1), (D,S)=(1,5), (D,D)=(4,4). S strictly dominates for both: against S, 2>1; against D, 5>4. Prediction (S,S) with (2,2), Pareto-dominated by (D,D) – a dilemma."
+      }
+    ]
+  },
+  {
+    "id": "m2",
+    "code": "GT-102",
+    "title": "Nash Equilibrium",
+    "short": "Best responses, pure and mixed equilibria, and coordination problems.",
+    "hours": 3,
+    "order": 2,
+    "game": "nash",
+    "outcomes": [
+      {
+        "id": "LO1",
+        "text": "Define best response and Nash equilibrium."
+      },
+      {
+        "id": "LO2",
+        "text": "Find all pure-strategy Nash equilibria of a matrix game by marking best responses."
+      },
+      {
+        "id": "LO3",
+        "text": "Compute mixed-strategy equilibria of 2×2 games using the indifference principle."
+      }
+    ],
+    "lessons": [
+      {
+        "title": "Best responses",
+        "html": "<p>A <b>best response</b> is the strategy that maximises your payoff given what the others do. To find them in a matrix, go column by column and underline Row's highest payoff; then go row by row and underline Column's highest payoff.</p>"
+      },
+      {
+        "title": "Nash equilibrium",
+        "html": "<p>A <b>Nash equilibrium</b> is a profile of strategies in which every player is playing a best response to the others. Equivalently: <i>no player can gain by changing their strategy alone</i>. In the matrix, it is any cell where both payoffs are underlined.</p><p>Games can have one equilibrium (Prisoner's Dilemma), several (Stag Hunt, Battle of the Sexes, Chicken) or none in pure strategies (Matching Pennies).</p>"
+      },
+      {
+        "title": "Mixed strategies and indifference",
+        "html": "<p>When no pure equilibrium exists, players randomise. In a mixed equilibrium each player mixes so that <b>the opponent is indifferent</b> between their own pure strategies – otherwise the opponent would pick one and the mix would not be stable.</p><div class=\"formula\">Row plays U with prob p.  Column indifferent when:<br>p·u₂(U,L) + (1−p)·u₂(D,L) = p·u₂(U,R) + (1−p)·u₂(D,R)</div><p>Notice that Row's probability is pinned down by <i>Column's</i> payoffs. Nash's 1950 theorem guarantees that every finite game has at least one equilibrium once mixing is allowed.</p>"
+      },
+      {
+        "title": "Multiple equilibria and selection",
+        "html": "<p>In the <b>Stag Hunt</b>, (Stag, Stag) gives both players the most, so it is <b>payoff-dominant</b>. (Hare, Hare) is safer: it is <b>risk-dominant</b> because deviating from it costs more if the other player is uncertain. Which equilibrium a group reaches depends on trust, history and communication. Use the Nash Solver in the Arena to test this on your own matrices.</p>"
+      }
+    ],
+    "questions": [
+      {
+        "order": 1,
+        "level": "L1",
+        "lo": "LO1",
+        "prompt": "Define: a Nash equilibrium is a strategy profile in which…",
+        "options": [
+          "No player can increase their payoff by unilaterally changing strategy",
+          "The total payoff of all players is maximised",
+          "Every player uses a dominant strategy",
+          "Players have agreed to cooperate"
+        ],
+        "answerIndex": 0,
+        "explanation": "Mutual best responses – no profitable unilateral deviation.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 2,
+        "level": "L2",
+        "lo": "LO2",
+        "prompt": "Explain why Matching Pennies has no pure-strategy Nash equilibrium.",
+        "options": [
+          "In every cell one of the two players would gain by switching",
+          "Both players have a dominant strategy",
+          "The payoffs sum to zero, which rules out equilibria",
+          "Players move sequentially"
+        ],
+        "answerIndex": 0,
+        "explanation": "The matcher wants to match and the mismatcher wants to mismatch, so every cell has a profitable deviation for someone.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 3,
+        "level": "L3",
+        "lo": "LO3",
+        "prompt": "Compute: Column's payoffs are (U,L)=4, (U,R)=1, (D,L)=0, (D,R)=2. In the mixed equilibrium Row plays U with probability p that makes Column indifferent. p = ?",
+        "options": [
+          "0.25",
+          "0.40",
+          "0.50",
+          "0.60"
+        ],
+        "answerIndex": 1,
+        "explanation": "4p + 0(1−p) = 1p + 2(1−p) → 4p = 2 − p → p = 0.4.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 4,
+        "level": "L4",
+        "lo": "LO2",
+        "prompt": "Analyze the Stag Hunt: (S,S)=(4,4), (S,H)=(0,3), (H,S)=(3,0), (H,H)=(3,3). Which are the pure Nash equilibria?",
+        "options": [
+          "(Stag, Stag) and (Hare, Hare)",
+          "Only (Stag, Stag)",
+          "Only (Hare, Hare)",
+          "(Stag, Hare) and (Hare, Stag)"
+        ],
+        "answerIndex": 0,
+        "explanation": "At (S,S) deviating gives 3<4; at (H,H) deviating gives 0<3. Off-diagonal cells have a profitable deviation.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 5,
+        "level": "L5",
+        "lo": "LO2",
+        "prompt": "Evaluate: which judgement about the two Stag Hunt equilibria is best justified?",
+        "options": [
+          "(Stag,Stag) is payoff-dominant but (Hare,Hare) is risk-dominant, so the outcome depends on players' beliefs about each other",
+          "(Stag,Stag) will always be played because it pays more",
+          "(Hare,Hare) is not really an equilibrium",
+          "Both are equally likely in every population"
+        ],
+        "answerIndex": 0,
+        "explanation": "Risk dominance compares deviation losses: (3−0)(3−0)=9 at (H,H) vs (4−3)(4−3)=1 at (S,S). Trust decides.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 6,
+        "level": "L6",
+        "lo": "LO3",
+        "prompt": "Design a 2×2 game that has no pure-strategy equilibrium and exactly one mixed equilibrium. Give the matrix and compute both players' equilibrium mixing probabilities.",
+        "options": null,
+        "answerIndex": null,
+        "explanation": null,
+        "open": true,
+        "rubric": [
+          "Matrix in which every cell has a profitable unilateral deviation",
+          "Indifference equation written for each player",
+          "Both probabilities computed correctly and lie strictly between 0 and 1",
+          "Check: verify with the Arena's Nash Solver"
+        ],
+        "model": "Penalty kick: Kicker (Left/Right) vs Keeper (Left/Right). Kicker payoff (scoring prob ×10): (L,L)=4, (L,R)=9, (R,L)=8, (R,R)=3; Keeper gets 10 minus that. Keeper dives L with q: 4q+9(1−q)=8q+3(1−q) → q=0.6. Kicker kicks L with p: keeper indifferent → 6p+2(1−p)=1p+7(1−p) → p=0.5."
+      }
+    ]
+  },
+  {
+    "id": "m3",
+    "code": "GT-201",
+    "title": "Repeated Games & the Evolution of Cooperation",
+    "short": "The shadow of the future, Tit-for-Tat and Axelrod's tournaments.",
+    "hours": 3,
+    "order": 3,
+    "game": "pd",
+    "outcomes": [
+      {
+        "id": "LO1",
+        "text": "Describe the repeated Prisoner's Dilemma and the role of the discount factor δ."
+      },
+      {
+        "id": "LO2",
+        "text": "Explain how trigger strategies sustain cooperation and derive the critical δ."
+      },
+      {
+        "id": "LO3",
+        "text": "Evaluate strategies' performance in round-robin and noisy tournaments."
+      }
+    ],
+    "lessons": [
+      {
+        "title": "The shadow of the future",
+        "html": "<p>Play the Prisoner's Dilemma once and defection dominates. Play it again and again with an <b>uncertain end</b> and things change: today's defection can be punished tomorrow. Model this with a continuation probability (or discount factor) δ – the chance the game continues to another round.</p><p>If the number of rounds is <b>known and finite</b>, backward induction unravels cooperation: everyone defects in the last round, so the second-last round is effectively the last, and so on back to round one.</p>"
+      },
+      {
+        "title": "Trigger strategies",
+        "html": "<p><b>Grim Trigger</b> cooperates until the opponent defects once, then defects forever. Cooperation is an equilibrium when the gain from cheating today is smaller than the future loss:</p><div class=\"formula\">R/(1−δ) ≥ T + δ·P/(1−δ)   ⇔   δ ≥ (T − R)/(T − P)</div><p>With the club's standard payoffs T=5, R=3, P=1 the threshold is δ ≥ 0.5: if each round has at least a 50% chance of being followed by another, cooperation can be self-enforcing.</p>"
+      },
+      {
+        "title": "Axelrod's tournaments",
+        "html": "<p>In 1980 Robert Axelrod invited experts to submit strategies for a round-robin repeated PD. The simplest entry, <b>Tit-for-Tat</b> (cooperate first, then copy the opponent's last move), won both tournaments. Axelrod identified four properties of successful strategies:</p><ul><li><b>Nice</b> – never the first to defect.</li><li><b>Retaliatory</b> – punish defection promptly.</li><li><b>Forgiving</b> – return to cooperation after punishment.</li><li><b>Clear</b> – easy for others to recognise and adapt to.</li></ul>"
+      },
+      {
+        "title": "Noise and robustness",
+        "html": "<p>With implementation errors, two TFT players can fall into an endless echo of retaliation after a single mistake. <b>Generous TFT</b> (forgive some defections) and <b>Pavlov / Win-Stay-Lose-Shift</b> recover from errors faster. Run the Arena's tournament with noise switched on and watch the ranking change.</p>"
+      }
+    ],
+    "questions": [
+      {
+        "order": 1,
+        "level": "L1",
+        "lo": "LO1",
+        "prompt": "Recall: Tit-for-Tat plays…",
+        "options": [
+          "Cooperate in round 1, then whatever the opponent did in the previous round",
+          "Defect in round 1, then copy the opponent",
+          "Cooperate until the opponent defects, then defect forever",
+          "Randomly with probability 0.5"
+        ],
+        "answerIndex": 0,
+        "explanation": "That is the definition; the third option is Grim Trigger.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 2,
+        "level": "L2",
+        "lo": "LO1",
+        "prompt": "Explain why cooperation can survive in an indefinitely repeated PD but not in one with a known final round.",
+        "options": [
+          "With a known end, backward induction makes every round a one-shot game; with an uncertain end, future punishment remains a credible threat",
+          "Players become friends over time",
+          "Payoffs increase in later rounds",
+          "The dominant strategy changes after round 10"
+        ],
+        "answerIndex": 0,
+        "explanation": "Unravelling requires a known last round. Uncertainty keeps the shadow of the future alive.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 3,
+        "level": "L3",
+        "lo": "LO2",
+        "prompt": "Compute: with T=5, R=3, P=1, S=0, Grim Trigger sustains cooperation if and only if δ ≥ …",
+        "options": [
+          "0.25",
+          "0.40",
+          "0.50",
+          "0.75"
+        ],
+        "answerIndex": 2,
+        "explanation": "(T−R)/(T−P) = (5−3)/(5−1) = 2/4 = 0.5.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 4,
+        "level": "L4",
+        "lo": "LO3",
+        "prompt": "Analyze: two Tit-for-Tat players meet in a noisy match where one cooperation is accidentally flipped to defection. What follows?",
+        "options": [
+          "An alternating echo (C/D, D/C, …) of retaliation until another error breaks it",
+          "Immediate return to mutual cooperation",
+          "Permanent mutual defection, like Grim Trigger",
+          "Nothing changes because TFT ignores single defections"
+        ],
+        "answerIndex": 0,
+        "explanation": "Each TFT copies the other's last move, so the single defection bounces back and forth.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 5,
+        "level": "L5",
+        "lo": "LO3",
+        "prompt": "Evaluate: TFT never scores more than its opponent in any single match, yet it won Axelrod's tournament. The best explanation is…",
+        "options": [
+          "Total score comes from eliciting mutual cooperation with many partners; beating individual opponents is not the objective",
+          "The tournament rules favoured simple strategies",
+          "TFT was lucky in the random draws",
+          "Other strategies were not rational"
+        ],
+        "answerIndex": 0,
+        "explanation": "Payoffs are absolute, not relative. A strategy that creates many (3,3) rounds accumulates more than one that wins small head-to-head contests.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 6,
+        "level": "L6",
+        "lo": "LO2",
+        "prompt": "Design your own repeated-PD strategy that is nice, retaliatory, forgiving and robust to 5% noise. Write its rules precisely, then predict (and test in the Arena tournament) how it performs against TFT and Always Defect.",
+        "options": null,
+        "answerIndex": null,
+        "explanation": null,
+        "open": true,
+        "rubric": [
+          "Rules specify the move for every possible history (complete strategy)",
+          "Each of Axelrod's four properties is demonstrated",
+          "A mechanism to escape noise-induced echoes",
+          "Prediction stated, then compared with tournament results"
+        ],
+        "model": "“Contrite Generous TFT”: cooperate first; if the opponent defected last round, defect with probability 0.9 (forgive 10%); if my own last defection was an accident, accept one punishment without retaliating. Against TFT: near-full cooperation; against ALLD: loses ≈ 0.1×S per round versus pure TFT."
+      }
+    ]
+  },
+  {
+    "id": "m4",
+    "code": "GT-202",
+    "title": "Probability, Expected Value & the House Edge",
+    "short": "Why the wheel always wins: EV, the law of large numbers and betting systems.",
+    "hours": 2,
+    "order": 4,
+    "game": "roulette",
+    "outcomes": [
+      {
+        "id": "LO1",
+        "text": "Compute the expected value of a bet."
+      },
+      {
+        "id": "LO2",
+        "text": "Explain the house edge and the law of large numbers."
+      },
+      {
+        "id": "LO3",
+        "text": "Analyze betting systems such as Martingale and the risk of ruin."
+      }
+    ],
+    "lessons": [
+      {
+        "title": "Expected value",
+        "html": "<p>The <b>expected value</b> of a bet is the probability-weighted average of its outcomes: EV = Σ pᵢ·xᵢ. A European roulette wheel has 37 pockets: 1–36 and a single green 0.</p><div class=\"formula\">Straight-up (pays 35:1):  EV = (1/37)(+35) + (36/37)(−1) = −1/37 ≈ −2.70%<br>Red (pays 1:1):           EV = (18/37)(+1) + (19/37)(−1) = −1/37 ≈ −2.70%</div><p>Every standard bet has the same edge, because payouts are set as if the wheel had 36 pockets. The zero is the house's margin. American wheels add a 00, doubling the edge to 2/38 ≈ 5.26%.</p>"
+      },
+      {
+        "title": "The law of large numbers",
+        "html": "<p>Over a few spins anything can happen. Over thousands, the average result per unit staked converges to the EV. A player can win tonight; a casino with millions of spins cannot lose. In the Arena's roulette table, the dashed line on the bankroll chart is the EV path – watch your real bankroll wander around it and drift down.</p>"
+      },
+      {
+        "title": "Betting systems and ruin",
+        "html": "<p><b>Martingale</b> doubles the stake after each loss so that the first win recovers everything plus one unit. It wins small amounts often and loses a very large amount rarely: after 10 straight losses on red (probability ≈ (19/37)¹⁰ ≈ 0.13%) the next stake is 1,024 units. Table limits and finite bankrolls make that collapse certain over enough play. No staking pattern changes the EV of the individual bets; it only reshapes the distribution of outcomes.</p>"
+      }
+    ],
+    "questions": [
+      {
+        "order": 1,
+        "level": "L1",
+        "lo": "LO1",
+        "prompt": "Recall: how many pockets does a European roulette wheel have?",
+        "options": [
+          "36",
+          "37",
+          "38",
+          "40"
+        ],
+        "answerIndex": 1,
+        "explanation": "1–36 plus a single zero.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 2,
+        "level": "L2",
+        "lo": "LO2",
+        "prompt": "Explain why every standard bet on a European wheel has the same house edge of 1/37.",
+        "options": [
+          "Payouts are set as if there were 36 pockets, so the extra zero pocket is the house's margin on every bet",
+          "Because red and black are equally likely",
+          "Because the casino adjusts the wheel",
+          "Because bets on single numbers pay more"
+        ],
+        "answerIndex": 0,
+        "explanation": "Fair odds on 36 pockets; the 37th pocket turns them unfair by exactly 1/37.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 3,
+        "level": "L3",
+        "lo": "LO1",
+        "prompt": "Compute the EV of a ₹100 bet on a dozen (12 numbers, pays 2:1) on a European wheel.",
+        "options": [
+          "₹0",
+          "−₹1.35",
+          "−₹2.70",
+          "−₹5.26"
+        ],
+        "answerIndex": 2,
+        "explanation": "(12/37)(+200) + (25/37)(−100) = (2400 − 2500)/37 = −₹2.70.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 4,
+        "level": "L4",
+        "lo": "LO3",
+        "prompt": "Analyze why the Martingale system fails over the long run.",
+        "options": [
+          "It trades many small wins for rare catastrophic losses; finite bankrolls and table limits stop the doubling, and each bet's EV stays negative",
+          "It works, but casinos ban it",
+          "It fails only on American wheels",
+          "It fails because spins are not independent"
+        ],
+        "answerIndex": 0,
+        "explanation": "Staking cannot change EV; it concentrates losses into rare, large ruin events.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 5,
+        "level": "L5",
+        "lo": "LO2",
+        "prompt": "Evaluate: a friend won five roulette sessions in a row and says their system “beats the wheel”. The best assessment is…",
+        "options": [
+          "Five wins are consistent with a negative-EV game; spins are independent and a small sample says little about the long-run average",
+          "The system must work; five wins is unlikely by chance",
+          "They should double their stakes",
+          "Roulette is a game of skill, so it is plausible"
+        ],
+        "answerIndex": 0,
+        "explanation": "Short streaks are common under negative EV. Only large samples reveal the edge.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 6,
+        "level": "L6",
+        "lo": "LO3",
+        "prompt": "Design a simulation experiment, using the Arena's Strategy Lab, comparing flat betting with Martingale. State your hypothesis, the parameters (players, spins, bankroll, base stake) and the metrics you will report.",
+        "options": null,
+        "answerIndex": null,
+        "explanation": null,
+        "open": true,
+        "rubric": [
+          "Clear, falsifiable hypothesis",
+          "Parameters fixed and justified (e.g., 1,000 players × 100 spins, ₹1,000 bankroll, ₹10 base)",
+          "Metrics include mean and median final bankroll and ruin rate",
+          "Interpretation linking results to EV and variance"
+        ],
+        "model": "H: both systems lose ≈2.7% of total stake on average, but Martingale has a higher median and a far higher ruin rate. Run 1,000 players × 100 spins, ₹1,000 bankroll, ₹10 base stake on red; report mean/median final bankroll, % ruined, max drawdown."
+      }
+    ]
+  },
+  {
+    "id": "m5",
+    "code": "GT-301",
+    "title": "Auctions & Mechanism Design",
+    "short": "First- vs second-price, truthful bidding and the winner's curse.",
+    "hours": 3,
+    "order": 5,
+    "game": "auction",
+    "outcomes": [
+      {
+        "id": "LO1",
+        "text": "Distinguish the standard auction formats."
+      },
+      {
+        "id": "LO2",
+        "text": "Explain why truthful bidding is weakly dominant in a Vickrey auction."
+      },
+      {
+        "id": "LO3",
+        "text": "Analyze bid shading, revenue equivalence and the winner's curse."
+      }
+    ],
+    "lessons": [
+      {
+        "title": "Four standard formats",
+        "html": "<ul><li><b>English</b> – ascending open outcry; the last bidder standing wins.</li><li><b>Dutch</b> – the price falls until someone accepts.</li><li><b>First-price sealed bid</b> – highest bid wins and pays its own bid.</li><li><b>Second-price sealed bid (Vickrey)</b> – highest bid wins and pays the <i>second-highest</i> bid.</li></ul>"
+      },
+      {
+        "title": "Why truth-telling works in Vickrey auctions",
+        "html": "<p>In a second-price auction your bid decides only <i>whether</i> you win, never the price you pay. Bidding above your value can make you win when the second bid exceeds your value (a loss); bidding below can make you lose an auction you would have won profitably. Bidding exactly your value is therefore <b>weakly dominant</b>. William Vickrey received the 1996 Nobel Prize partly for this insight.</p>"
+      },
+      {
+        "title": "Bid shading and revenue equivalence",
+        "html": "<p>In a first-price auction you must shade your bid below your value to make any profit. With n bidders whose values are independent and uniform, the symmetric equilibrium bid is:</p><div class=\"formula\">b(v) = ((n − 1)/n) · v</div><p>The <b>revenue equivalence theorem</b> says that, with risk-neutral bidders and independent private values, all four formats give the seller the same expected revenue. Break an assumption – risk-averse bidders, correlated values, asymmetric bidders – and the formats diverge.</p>"
+      },
+      {
+        "title": "The winner's curse",
+        "html": "<p>When the item has a <b>common value</b> that everyone estimates with error (an oil field, a spectrum licence), the winner is the bidder with the most optimistic estimate. Winning is itself bad news about your estimate. Rational bidders shade their bids to account for it.</p>"
+      }
+    ],
+    "questions": [
+      {
+        "order": 1,
+        "level": "L1",
+        "lo": "LO1",
+        "prompt": "Recall: in a sealed-bid second-price (Vickrey) auction the winner pays…",
+        "options": [
+          "The second-highest bid",
+          "Their own bid",
+          "The average bid",
+          "The reserve price only"
+        ],
+        "answerIndex": 0,
+        "explanation": "That is the defining rule.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 2,
+        "level": "L2",
+        "lo": "LO2",
+        "prompt": "Explain why bidding your true value is weakly dominant in a Vickrey auction.",
+        "options": [
+          "Your bid only decides whether you win, not the price; overbidding risks paying more than your value and underbidding risks losing profitable wins",
+          "Because others will bid truthfully too",
+          "Because the seller requires it",
+          "Because it maximises the seller's revenue"
+        ],
+        "answerIndex": 0,
+        "explanation": "Price is set by others' bids, so the only effect of your bid is the win/lose boundary – put it at your value.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 3,
+        "level": "L3",
+        "lo": "LO3",
+        "prompt": "Compute: first-price auction, 4 bidders, values i.i.d. uniform on [0, 100]. Your value is 80. What is the symmetric equilibrium bid?",
+        "options": [
+          "40",
+          "60",
+          "70",
+          "80"
+        ],
+        "answerIndex": 1,
+        "explanation": "b = (n−1)/n · v = 3/4 × 80 = 60.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 4,
+        "level": "L4",
+        "lo": "LO3",
+        "prompt": "Analyze: which broken assumption makes a first-price auction raise more expected revenue than a second-price auction?",
+        "options": [
+          "Bidders are risk-averse",
+          "Bidders are risk-neutral",
+          "Values are independent",
+          "Bidders are symmetric"
+        ],
+        "answerIndex": 0,
+        "explanation": "Risk-averse bidders shade less in first-price auctions to avoid losing, raising revenue; second-price bidding is unaffected.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 5,
+        "level": "L5",
+        "lo": "LO3",
+        "prompt": "Evaluate: winners of common-value auctions (e.g., oil leases) often lose money. The best explanation is…",
+        "options": [
+          "The winner's curse – winning means your estimate was the most optimistic, so unshaded bids overpay on average",
+          "Sellers manipulate the auctions",
+          "Bidders always bid irrationally",
+          "Second-price rules are unfair"
+        ],
+        "answerIndex": 0,
+        "explanation": "Conditioning on winning reveals your estimate was high; failing to correct for it causes systematic overpayment.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 6,
+        "level": "L6",
+        "lo": "LO2",
+        "prompt": "Design an auction that allocates 3 expert-mentoring slots among 20 hackathon teams using club credits, so that bidding one's true value is a dominant strategy. Specify the rules, the price paid and how ties are broken.",
+        "options": null,
+        "answerIndex": null,
+        "explanation": null,
+        "open": true,
+        "rubric": [
+          "Sealed bids in credits with clear eligibility",
+          "Uniform price set by the highest losing bid (4th-highest), or a VCG argument",
+          "Explains why truthful bidding is dominant",
+          "Tie-breaking and budget rules stated"
+        ],
+        "model": "Sealed bids; top 3 bids win; each winner pays the 4th-highest bid (uniform (k+1)-th price). With unit demand, a team's bid affects only whether it wins, so bidding its value is dominant. Ties broken by earlier submission time; bids cannot exceed credit balance."
+      }
+    ]
+  },
+  {
+    "id": "m6",
+    "code": "GT-302",
+    "title": "Bargaining, Fairness & Bounded Rationality",
+    "short": "Ultimatum offers, level-k thinking and the Keynesian beauty contest.",
+    "hours": 2,
+    "order": 6,
+    "game": "ultimatum",
+    "outcomes": [
+      {
+        "id": "LO1",
+        "text": "Describe the ultimatum game and its subgame-perfect equilibrium."
+      },
+      {
+        "id": "LO2",
+        "text": "Explain experimental deviations from equilibrium using fairness preferences."
+      },
+      {
+        "id": "LO3",
+        "text": "Apply level-k reasoning to the guess-2/3-of-the-average game."
+      }
+    ],
+    "lessons": [
+      {
+        "title": "The ultimatum game",
+        "html": "<p>A proposer offers a split of ₹100; the responder accepts (both get the split) or rejects (both get nothing). By backward induction the responder accepts any positive amount, so the <b>subgame-perfect equilibrium</b> is the smallest positive offer, accepted.</p><p>Experiments across many countries show something else: modal offers are 40–50%, and offers below about 20% are rejected roughly half the time. Responders pay to punish unfairness, and proposers anticipate it.</p>"
+      },
+      {
+        "title": "Level-k thinking",
+        "html": "<p>In <b>guess 2/3 of the average</b>, everyone picks 0–100 and the closest to two-thirds of the average wins. Iterated reasoning leads to the unique equilibrium, 0. Real players reason only a few steps:</p><div class=\"formula\">Level-0: random, average 50<br>Level-1: 2/3 × 50 = 33.3<br>Level-2: 2/3 × 33.3 = 22.2<br>Level-3: 2/3 × 22.2 = 14.8   …   Nash: 0</div><p>Winning numbers in classrooms and newspapers usually fall between 15 and 35. The best guess is a best response to the people actually playing, not to perfectly rational opponents. Keynes used the same idea to describe stock markets.</p>"
+      }
+    ],
+    "questions": [
+      {
+        "order": 1,
+        "level": "L1",
+        "lo": "LO1",
+        "prompt": "Recall: in the subgame-perfect equilibrium of the ultimatum game (₹100, ₹1 units), the proposer offers…",
+        "options": [
+          "₹1, the smallest positive amount",
+          "₹50",
+          "₹0",
+          "Whatever the responder demands"
+        ],
+        "answerIndex": 0,
+        "explanation": "The responder prefers ₹1 to ₹0, so the proposer keeps ₹99.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 2,
+        "level": "L2",
+        "lo": "LO2",
+        "prompt": "Explain why many responders reject offers of 10–20%.",
+        "options": [
+          "They have preferences for fairness and are willing to give up money to punish unfair proposers",
+          "They cannot calculate payoffs",
+          "Rejection gives them more money",
+          "The rules reward rejection"
+        ],
+        "answerIndex": 0,
+        "explanation": "Inequity aversion and reciprocity models explain costly punishment.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 3,
+        "level": "L3",
+        "lo": "LO3",
+        "prompt": "Compute: in a guess-2/3-of-the-average game, a level-2 thinker who believes level-0 players average 50 guesses about…",
+        "options": [
+          "33.3",
+          "22.2",
+          "14.8",
+          "0"
+        ],
+        "answerIndex": 1,
+        "explanation": "Level-1 = 33.3; level-2 best-responds to level-1: 2/3 × 33.3 ≈ 22.2.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 4,
+        "level": "L4",
+        "lo": "LO3",
+        "prompt": "Analyze: classroom winning numbers are usually 20–35, not the equilibrium 0. Why?",
+        "options": [
+          "Most players reason only one or two steps, and the winning guess is a best response to the actual population",
+          "Players do not understand the rules",
+          "Random noise always pushes guesses up",
+          "The equilibrium is actually 33"
+        ],
+        "answerIndex": 0,
+        "explanation": "Bounded depth of reasoning shifts the average; the target follows the population, not theory.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 5,
+        "level": "L5",
+        "lo": "LO2",
+        "prompt": "Evaluate: as proposer with ₹100, acceptance rates are 30% for offer 10, 60% for 30, 95% for 40 and 100% for 50. Which offer maximises your expected payoff?",
+        "options": [
+          "10",
+          "30",
+          "40",
+          "50"
+        ],
+        "answerIndex": 2,
+        "explanation": "EVs: 90×0.3=27, 70×0.6=42, 60×0.95=57, 50×1=50. Offer 40 is best.",
+        "open": false,
+        "rubric": null,
+        "model": null
+      },
+      {
+        "order": 6,
+        "level": "L6",
+        "lo": "LO2",
+        "prompt": "Design a classroom experiment testing whether anonymity changes ultimatum-game offers. Specify treatment and control, participants, procedure, the measure and your prediction.",
+        "options": null,
+        "answerIndex": null,
+        "explanation": null,
+        "open": true,
+        "rubric": [
+          "Control (names visible) and treatment (anonymous) clearly defined",
+          "Random assignment and adequate sample",
+          "Outcome measures: mean offer, rejection rate",
+          "Prediction grounded in fairness/reputation theory, plus a threat to validity"
+        ],
+        "model": "Randomly assign 60 students to Visible or Anonymous pairing, ₹100 virtual stakes, one shot. Measure mean offer and rejection rate. Predict lower offers when anonymous (reputation concern removed). Threat: students discussing the game between sessions."
+      }
+    ]
+  }
+]

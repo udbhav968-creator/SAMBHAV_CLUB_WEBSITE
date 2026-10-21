@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /attendance/console
+Disallow: /api/
+Disallow: /me
+Disallow: /login
+Disallow: /forgot
+
+# Replace with your production domain.
+Sitemap: https://sambhav.example.edu/sitemap.xml

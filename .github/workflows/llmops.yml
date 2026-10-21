@@ -1,0 +1,79 @@
+name: LLMOps
+# Vihaan quality gates and drift monitoring.
+#  - PRs touching the AI: offline intent eval (always) + live-model behaviour eval (when the API key secret exists).
+#  - Nightly: re-run the live eval against the production model/prompt; open an issue if quality regresses (model drift).
+#  - Manual: evaluate a candidate model or prompt version before promoting it.
+on:
+  pull_request:
+    paths: ["apps/api/src/lib/vihaan.ts", "apps/api/src/lib/llm.ts", "apps/api/src/modules/ai.ts", "evals/**", "infra/monitoring/**"]
+  push:
+    branches: [main]
+    paths: ["apps/api/src/lib/vihaan.ts", "apps/api/src/lib/llm.ts", "apps/api/src/modules/ai.ts", "evals/**"]
+  schedule: [{ cron: "41 2 * * *" }]     # 08:11 IST nightly
+  workflow_dispatch:
+    inputs:
+      model: { description: "Candidate model id (blank = default)", required: false }
+      prompt_version: { description: "Candidate prompt version (blank = latest)", required: false }
+
+permissions: { contents: read, issues: write }
+
+jobs:
+  intent:
+    name: Intent-router eval (offline gate)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm i -g npm@11 && npm ci
+      - run: npm run eval:intent
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: eval-intent, path: evals/reports/intent.* }
+
+  assistant:
+    name: Assistant behaviour eval (live model)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env: { POSTGRES_USER: postgres, POSTGRES_PASSWORD: postgres, POSTGRES_DB: sambhav_eval_test }
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U postgres" --health-interval 5s --health-retries 10
+    env:
+      EVAL_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/sambhav_eval_test
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      AI_MODEL: ${{ inputs.model || vars.AI_MODEL || 'claude-haiku-5-5' }}
+      AI_PROMPT_VERSION: ${{ inputs.prompt_version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm i -g npm@11 && npm ci
+      - name: Harness self-test (simulated model, no network)
+        run: npm run eval:simulated
+      - name: Live-model eval (skips cleanly when no API key secret is set)
+        run: npm run eval:assistant
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: eval-assistant, path: evals/reports/ }
+      - name: Open an issue when the nightly eval regresses (model drift)
+        if: failure() && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.existsSync('evals/reports/assistant.md') ? fs.readFileSync('evals/reports/assistant.md', 'utf8') : 'See the workflow logs.';
+            await github.rest.issues.create({ owner: context.repo.owner, repo: context.repo.repo,
+              title: `Vihaan nightly eval regressed (${new Date().toISOString().slice(0, 10)})`, labels: ['llmops'],
+              body: `The nightly live-model eval failed its gates.\n\n${body}\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}` });
+
+  monitoring:
+    name: Alert rules (promtool)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          curl -sSL https://github.com/prometheus/prometheus/releases/download/v3.5.0/prometheus-3.5.0.linux-amd64.tar.gz | tar xz --strip-components=1 prometheus-3.5.0.linux-amd64/promtool
+          ./promtool check rules infra/monitoring/alerts.yml
+          cd infra/monitoring && ../../promtool test rules alerts.test.yml

@@ -1,0 +1,40 @@
+{
+  "name": "sambhav-platform",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Sambhav Game Theory Society — full-stack club platform (Arena, LMS, attendance, events).",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @sambhav/game-core && npm run build -w @sambhav/api && npm run build -w @sambhav/web",
+    "dev:api": "npm run dev -w @sambhav/api",
+    "dev:web": "npm run dev -w @sambhav/web",
+    "test": "npm run build -w @sambhav/game-core && npm run test -w @sambhav/game-core && npm run test -w @sambhav/api && npm run test -w @sambhav/web",
+    "typecheck": "npm run build -w @sambhav/game-core && npm run typecheck -w @sambhav/api && npm run typecheck -w @sambhav/web",
+    "db:generate": "npm run db:generate -w @sambhav/api",
+    "db:migrate": "npm run db:migrate -w @sambhav/api",
+    "db:seed": "npm run db:seed -w @sambhav/api",
+    "e2e": "npm run build -w @sambhav/game-core && npm run build -w @sambhav/web && playwright test -c e2e/playwright.config.ts",
+    "coverage": "npm run build -w @sambhav/game-core && npm run test:coverage -w @sambhav/game-core && npm run test:coverage -w @sambhav/api",
+    "lint": "eslint . --max-warnings=40",
+    "eval": "tsx evals/run-intent.ts && tsx evals/run-assistant.ts",
+    "eval:intent": "tsx evals/run-intent.ts",
+    "eval:assistant": "tsx evals/run-assistant.ts",
+    "eval:simulated": "EVAL_FAKE=1 tsx evals/run-assistant.ts"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "npm@11.21.1",
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "@playwright/test": "1.56.1",
+    "eslint": "9.39.5",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.13.0",
+    "tsx": "4.23.15",
+    "typescript-eslint": "8.72.0"
+  }
+}

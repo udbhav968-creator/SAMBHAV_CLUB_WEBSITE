@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Replace sambhav.example.edu with your production domain (see docs/DEPLOY.md). -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://sambhav.example.edu/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://sambhav.example.edu/about</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sambhav.example.edu/arena</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://sambhav.example.edu/arena/roulette</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sambhav.example.edu/arena/pd</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sambhav.example.edu/arena/guess</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sambhav.example.edu/arena/live</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sambhav.example.edu/arena/rps</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sambhav.example.edu/arena/nash</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sambhav.example.edu/arena/auction</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sambhav.example.edu/arena/ultimatum</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sambhav.example.edu/learn</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://sambhav.example.edu/learn/m1</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sambhav.example.edu/learn/m2</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sambhav.example.edu/learn/m3</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sambhav.example.edu/learn/m4</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sambhav.example.edu/learn/m5</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sambhav.example.edu/learn/m6</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sambhav.example.edu/events</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://sambhav.example.edu/leaderboard</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://sambhav.example.edu/notices</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+</urlset>

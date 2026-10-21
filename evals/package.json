@@ -1,0 +1,6 @@
+{
+  "name": "@sambhav/evals",
+  "private": true,
+  "type": "module",
+  "description": "Vihaan LLMOps evaluation suites (run with tsx from the repo root)."
+}

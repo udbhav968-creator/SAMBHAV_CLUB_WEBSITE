@@ -1,0 +1,106 @@
+{"input": "open roulette", "expect": {"navigate": "/arena/roulette"}, "lang": "en", "category": "navigate", "id": "intent-001"}
+{"input": "take me to the leaderboard", "expect": {"navigate": "/leaderboard"}, "lang": "en", "category": "navigate", "id": "intent-002"}
+{"input": "show me the events", "expect": {"navigate": "/events"}, "lang": "en", "category": "navigate", "id": "intent-003"}
+{"input": "go to attendance", "expect": {"navigate": "/attendance"}, "lang": "en", "category": "navigate", "id": "intent-004"}
+{"input": "open GT-301", "expect": {"navigate": "/learn/m5"}, "lang": "en", "category": "navigate", "id": "intent-005"}
+{"input": "take me to my profile", "expect": {"navigate": "/me"}, "lang": "en", "category": "navigate", "id": "intent-006"}
+{"input": "go home", "expect": {"navigate": "/"}, "lang": "en", "category": "navigate", "id": "intent-007"}
+{"input": "open the nash solver", "expect": {"navigate": "/arena/nash"}, "lang": "en", "category": "navigate", "id": "intent-008"}
+{"input": "show notices", "expect": {"navigate": "/notices"}, "lang": "en", "category": "navigate", "id": "intent-009"}
+{"input": "open the members directory", "expect": {"navigate": "/members"}, "lang": "en", "category": "navigate", "id": "intent-010"}
+{"input": "play prisoner's dilemma", "expect": {"navigate": "/arena/pd"}, "lang": "en", "category": "navigate", "id": "intent-011"}
+{"input": "open the auction game", "expect": {"navigate": "/arena/auction"}, "lang": "en", "category": "navigate", "id": "intent-012"}
+{"input": "take me to the ultimatum game", "expect": {"navigate": "/arena/ultimatum"}, "lang": "en", "category": "navigate", "id": "intent-013"}
+{"input": "open rock paper scissors", "expect": {"navigate": "/arena/rps"}, "lang": "en", "category": "navigate", "id": "intent-014"}
+{"input": "show me the learning modules", "expect": {"navigate": "/learn"}, "lang": "en", "category": "navigate", "id": "intent-015"}
+{"input": "open the live arena", "expect": {"navigate": "/arena/live"}, "lang": "en", "category": "navigate", "id": "intent-016"}
+{"input": "take me to the arena", "expect": {"navigate": "/arena"}, "lang": "en", "category": "navigate", "id": "intent-017"}
+{"input": "open GT-101", "expect": {"navigate": "/learn/m1"}, "lang": "en", "category": "navigate", "id": "intent-018"}
+{"input": "go to gt 202", "expect": {"navigate": "/learn/m4"}, "lang": "en", "category": "navigate", "id": "intent-019"}
+{"input": "navigate to the notice board", "expect": {"navigate": "/notices"}, "lang": "en", "category": "navigate", "id": "intent-020"}
+{"input": "bring me to the guess 2/3 game", "expect": {"navigate": "/arena/guess"}, "lang": "en", "category": "navigate", "id": "intent-021"}
+{"input": "open about page", "expect": {"navigate": "/about"}, "lang": "en", "category": "navigate", "id": "intent-022"}
+{"input": "show me my progress", "expect": {"navigate": "/me"}, "lang": "en", "category": "navigate", "id": "intent-023"}
+{"input": "jump to check-in", "expect": {"navigate": "/attendance"}, "lang": "en", "category": "navigate", "id": "intent-024"}
+{"input": "take me to the vickrey auction", "expect": {"navigate": "/arena/auction"}, "lang": "en", "category": "navigate", "id": "intent-025"}
+{"input": "open the main page", "expect": {"navigate": "/"}, "lang": "en", "category": "navigate", "id": "intent-026"}
+{"input": "show the roster", "expect": {"navigate": "/members"}, "lang": "en", "category": "navigate", "id": "intent-027"}
+{"input": "open my dashboard", "expect": {"navigate": "/me"}, "lang": "en", "category": "navigate", "id": "intent-028"}
+{"input": "go to the beauty contest game", "expect": {"navigate": "/arena/guess"}, "lang": "en", "category": "navigate", "id": "intent-029"}
+{"input": "open tit for tat game", "expect": {"navigate": "/arena/pd"}, "lang": "en", "category": "navigate", "id": "intent-030"}
+{"input": "leaderboard dikhao", "expect": {"navigate": "/leaderboard"}, "lang": "hinglish", "category": "navigate", "id": "intent-031"}
+{"input": "roulette kholo", "expect": {"navigate": "/arena/roulette"}, "lang": "hinglish", "category": "navigate", "id": "intent-032"}
+{"input": "events dikhao", "expect": {"navigate": "/events"}, "lang": "hinglish", "category": "navigate", "id": "intent-033"}
+{"input": "attendance le chalo", "expect": {"navigate": "/attendance"}, "lang": "hinglish", "category": "navigate", "id": "intent-034"}
+{"input": "notice board kholo", "expect": {"navigate": "/notices"}, "lang": "hinglish", "category": "navigate", "id": "intent-035"}
+{"input": "mujhe arena le chalo", "expect": {"navigate": "/arena"}, "lang": "hinglish", "category": "navigate", "id": "intent-036"}
+{"input": "GT-102 kholo", "expect": {"navigate": "/learn/m2"}, "lang": "hinglish", "category": "navigate", "id": "intent-037"}
+{"input": "members dikhao", "expect": {"navigate": "/members"}, "lang": "hinglish", "category": "navigate", "id": "intent-038"}
+{"input": "nash solver kholo", "expect": {"navigate": "/arena/nash"}, "lang": "hinglish", "category": "navigate", "id": "intent-039"}
+{"input": "hazri le chalo", "expect": {"navigate": "/attendance"}, "lang": "hinglish", "category": "navigate", "id": "intent-040"}
+{"input": "auction wala game kholo", "expect": {"navigate": "/arena/auction"}, "lang": "hinglish", "category": "navigate", "id": "intent-041"}
+{"input": "modules dikhao", "expect": {"navigate": "/learn"}, "lang": "hinglish", "category": "navigate", "id": "intent-042"}
+{"input": "लीडरबोर्ड दिखाओ", "expect": {"navigate": "/leaderboard"}, "lang": "hi", "category": "navigate", "id": "intent-043"}
+{"input": "रूलेट खोलो", "expect": {"navigate": "/arena/roulette"}, "lang": "hi", "category": "navigate", "id": "intent-044"}
+{"input": "इवेंट्स दिखाओ", "expect": {"navigate": "/events"}, "lang": "hi", "category": "navigate", "id": "intent-045"}
+{"input": "हाज़िरी ले चलो", "expect": {"navigate": "/attendance"}, "lang": "hi", "category": "navigate", "id": "intent-046"}
+{"input": "roulette", "expect": {"navigate": "/arena/roulette"}, "lang": "en", "category": "short", "id": "intent-047"}
+{"input": "leaderboard", "expect": {"navigate": "/leaderboard"}, "lang": "en", "category": "short", "id": "intent-048"}
+{"input": "events", "expect": {"navigate": "/events"}, "lang": "en", "category": "short", "id": "intent-049"}
+{"input": "nash solver", "expect": {"navigate": "/arena/nash"}, "lang": "en", "category": "short", "id": "intent-050"}
+{"input": "notices", "expect": {"navigate": "/notices"}, "lang": "en", "category": "short", "id": "intent-051"}
+{"input": "GT-201", "expect": {"navigate": "/learn/m3"}, "lang": "en", "category": "short", "id": "intent-052"}
+{"input": "explain nash equilibrium", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-053"}
+{"input": "what is a dominant strategy?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-054"}
+{"input": "why does the house always win at roulette?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-055"}
+{"input": "how does a vickrey auction work", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-056"}
+{"input": "is tit for tat the best strategy?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-057"}
+{"input": "who is leading the leaderboard?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-058"}
+{"input": "when is the next event?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-059"}
+{"input": "what's on this week?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-060"}
+{"input": "tell me about level-k thinking", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-061"}
+{"input": "can you explain the prisoner's dilemma with an example", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-062"}
+{"input": "compare first-price and second-price auctions", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-063"}
+{"input": "what is expected value in roulette", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-064"}
+{"input": "should I bid my true value in an auction?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-065"}
+{"input": "how many points do I have?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-066"}
+{"input": "which module should I start with?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-067"}
+{"input": "define mixed strategy", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-068"}
+{"input": "explain the 2/3 game", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-069"}
+{"input": "what are the rules of the ultimatum game?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-070"}
+{"input": "why do people reject unfair offers in the ultimatum game", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-071"}
+{"input": "how is attendance percentage calculated?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-072"}
+{"input": "does the martingale strategy work", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-073"}
+{"input": "teach me backward induction", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-074"}
+{"input": "what is a zero-sum game", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-075"}
+{"input": "who made this website", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-076"}
+{"input": "is roulette rigged here?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-077"}
+{"input": "kya hai nash equilibrium", "expect": {"navigate": null}, "lang": "hinglish", "category": "question", "id": "intent-078"}
+{"input": "samjhao prisoner's dilemma", "expect": {"navigate": null}, "lang": "hinglish", "category": "question", "id": "intent-079"}
+{"input": "roulette mein ghar hamesha kyun jeetta hai", "expect": {"navigate": null}, "lang": "hinglish", "category": "question", "id": "intent-080"}
+{"input": "auction kaise kaam karta hai", "expect": {"navigate": null}, "lang": "hinglish", "category": "question", "id": "intent-081"}
+{"input": "mera rank kya hai batao", "expect": {"navigate": null}, "lang": "hinglish", "category": "question", "id": "intent-082"}
+{"input": "नैश संतुलन क्या है?", "expect": {"navigate": null}, "lang": "hi", "category": "question", "id": "intent-083"}
+{"input": "रूलेट में हमेशा घर क्यों जीतता है?", "expect": {"navigate": null}, "lang": "hi", "category": "question", "id": "intent-084"}
+{"input": "how do I check in?", "expect": {"navigate": null, "text": "6-digit"}, "lang": "en", "category": "faq", "id": "intent-085"}
+{"input": "how do I mark my attendance?", "expect": {"navigate": null, "text": "6-digit"}, "lang": "en", "category": "faq", "id": "intent-086"}
+{"input": "hi", "expect": {"navigate": null, "text": "Vihaan"}, "lang": "en", "category": "faq", "id": "intent-087"}
+{"input": "hello", "expect": {"navigate": null, "text": "Vihaan"}, "lang": "en", "category": "faq", "id": "intent-088"}
+{"input": "namaste", "expect": {"navigate": null, "text": "Vihaan"}, "lang": "hinglish", "category": "faq", "id": "intent-089"}
+{"input": "Is there a session open for check-in right now?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-090"}
+{"input": "is the arena open to visitors?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-091"}
+{"input": "what time does the event open?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-092"}
+{"input": "when does the leaderboard open for the new semester?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-093"}
+{"input": "are registrations open for the auction workshop?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-094"}
+{"input": "can you open the leaderboard?", "expect": {"navigate": "/leaderboard"}, "lang": "en", "category": "navigate", "id": "intent-095"}
+{"input": "could you take me to roulette?", "expect": {"navigate": "/arena/roulette"}, "lang": "en", "category": "navigate", "id": "intent-096"}
+{"input": "please show me the events", "expect": {"navigate": "/events"}, "lang": "en", "category": "navigate", "id": "intent-097"}
+{"input": "can you open GT-202?", "expect": {"navigate": "/learn/m4"}, "lang": "en", "category": "navigate", "id": "intent-098"}
+{"input": "How am I doing — my points and attendance?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-099"}
+{"input": "What's Aarav's attendance percentage?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-100"}
+{"input": "What's the attendance code for today?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-101"}
+{"input": "why is my attendance low?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-102"}
+{"input": "did my check-in go through?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-103"}
+{"input": "is attendance compulsory for the workshop?", "expect": {"navigate": null}, "lang": "en", "category": "question", "id": "intent-104"}
+{"input": "how can I check in?", "expect": {"navigate": null, "text": "6-digit"}, "lang": "en", "category": "faq", "id": "intent-105"}
+{"input": "check-in kaise karein?", "expect": {"navigate": null, "text": "6-digit"}, "lang": "hinglish", "category": "faq", "id": "intent-106"}

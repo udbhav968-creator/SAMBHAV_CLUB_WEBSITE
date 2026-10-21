@@ -1,0 +1,29 @@
+# Automatic HTTPS for {$DOMAIN}; everything is proxied to the single app container.
+{$DOMAIN} {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		Permissions-Policy "camera=(self), microphone=(self), geolocation=()"
+		-Server
+	}
+
+	# Vihaan streams Server-Sent Events: never buffer.
+	@sse path /api/v1/ai/chat
+	reverse_proxy @sse app:4000 {
+		flush_interval -1
+	}
+
+	# REST + Socket.IO (websocket upgrade is automatic) + SPA.
+	reverse_proxy app:4000 {
+		health_uri /healthz
+		health_interval 15s
+	}
+}
+
+# www → apex
+www.{$DOMAIN} {
+	redir https://{$DOMAIN}{uri} permanent
+}

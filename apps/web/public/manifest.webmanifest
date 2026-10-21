@@ -1,0 +1,24 @@
+{
+  "name": "Sambhav — Game Theory Society",
+  "short_name": "Sambhav",
+  "description": "Game-theory Arena, learning modules, events, live attendance and Vihaan, the AI guide.",
+  "id": "/",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#070818",
+  "theme_color": "#070818",
+  "categories": ["education", "games"],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "shortcuts": [
+    { "name": "Check in", "url": "/attendance", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "The Arena", "url": "/arena", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Leaderboard", "url": "/leaderboard", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

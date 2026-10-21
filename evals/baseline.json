@@ -1,0 +1,11 @@
+{
+  "intent": {
+    "cases": 106,
+    "navigation_accuracy": 1,
+    "false_navigation": 0,
+    "hijacked_questions": 0,
+    "faq_accuracy": 1,
+    "overall_accuracy": 1,
+    "updatedAt": "2026-10-20"
+  }
+}

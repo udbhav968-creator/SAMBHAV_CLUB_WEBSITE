@@ -1,0 +1,33 @@
+{
+  "name": "@sambhav/web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p tsconfig.json --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@sambhav/game-core": "1.0.0",
+    "@tanstack/react-query": "5.62.0",
+    "qrcode.react": "4.1.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "7.18.4",
+    "socket.io-client": "4.8.1"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "10.4.1",
+    "@testing-library/react": "16.3.0",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "@vitejs/plugin-react": "4.7.0",
+    "jsdom": "27.0.1",
+    "typescript": "5.6.3",
+    "vite": "6.4.4",
+    "vitest": "4.1.12"
+  }
+}

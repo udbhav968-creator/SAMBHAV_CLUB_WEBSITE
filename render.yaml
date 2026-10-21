@@ -1,0 +1,74 @@
+# Render Blueprint — one click: Dashboard → New → Blueprint → pick this repo.
+# Creates: the app (Docker, API + SPA in one service), managed Postgres, and Key Value (Redis-compatible).
+# After the first deploy set the "sync: false" values in the dashboard (Environment tab).
+# Plan names change over time; adjust `plan:` to what your Render workspace offers.
+services:
+  - type: web
+    name: sambhav
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter            # free also works for a demo, but sleeps when idle (cold starts, websockets drop)
+    healthCheckPath: /readyz
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase: { name: sambhav-db, property: connectionString }
+      - key: REDIS_URL
+        fromService: { type: keyvalue, name: sambhav-kv, property: connectionString }
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: ATTENDANCE_KEY      # any ≥32-char secret; hashed to 32 bytes. Never rotate casually: it encrypts live session secrets.
+        generateValue: true
+      - key: WEB_ORIGIN          # e.g. https://sambhav.onrender.com or your custom domain
+        sync: false
+      # --- attendance admin (used on first seed only) ---
+      - key: ADMIN_USERNAME
+        value: udbhav
+      - key: ADMIN_PASSWORD      # initial PIN; rotate from Admin → Security (SMS OTP)
+        sync: false
+      - key: ADMIN_PHONE            # registered mobile for OTPs, e.g. +91XXXXXXXXXX (kept out of the public repo)
+        sync: false
+      - key: ADMIN_EMAIL
+        value: udbhav@sambhav.club
+      # --- SMS OTP gateway: msg91 | fast2sms | twilio (console only logs the code) ---
+      - key: SMS_PROVIDER
+        value: msg91
+      - key: SMS_API_KEY
+        sync: false
+      - key: SMS_TEMPLATE_ID
+        sync: false
+      - key: SMS_SENDER
+        sync: false
+      # --- Vihaan AI (optional; without a key Vihaan runs in offline mode) ---
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: AI_MODEL
+        value: claude-haiku-5-5
+      - key: AI_EFFORT
+        value: low
+      - key: AI_PROMPT_VERSION      # blank = latest; set to roll back a prompt
+        sync: false
+      # --- security & monitoring ---
+      - key: ENFORCE_PASSWORD_CHANGE
+        value: auto
+      - key: CHECKIN_ALLOWED_CIDRS  # campus Wi-Fi egress ranges (optional)
+        sync: false
+      - key: METRICS_TOKEN          # enables GET /metrics for Prometheus / Grafana Cloud
+        generateValue: true
+
+  - type: keyvalue
+    name: sambhav-kv
+    plan: free
+    maxmemoryPolicy: noeviction   # rate-limit counters and OTPs must not be evicted
+    ipAllowList: []               # internal network only
+
+databases:
+  - name: sambhav-db
+    plan: basic-256mb
+    databaseName: sambhav
+    user: sambhav
+    ipAllowList: []

@@ -3,7 +3,7 @@
 #   docker build -t sambhav .   &&   docker run -p 4000:4000 --env-file .env sambhav
 
 # ---- build ----
-FROM node:22-alpine AS build
+FROM node:26-alpine AS build
 WORKDIR /repo
 COPY package.json package-lock.json ./
 COPY packages/game-core/package.json packages/game-core/
@@ -18,7 +18,7 @@ RUN npm run build -w @sambhav/game-core && npm run build -w @sambhav/api && npm 
  && npm prune --omit=dev
 
 # ---- runtime ----
-FROM node:22-alpine
+FROM node:26-alpine
 ENV NODE_ENV=production PORT=4000 WEB_DIST=/repo/web
 WORKDIR /repo
 RUN addgroup -S app && adduser -S app -G app

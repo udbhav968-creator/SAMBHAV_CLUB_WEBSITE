@@ -27,7 +27,7 @@ jobs:
         with: { node-version: 22, cache: npm }
       - run: npm i -g npm@11 && npm ci
       - run: npm run eval:intent
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with: { name: eval-intent, path: evals/reports/intent.* }
 
@@ -54,7 +54,7 @@ jobs:
         run: npm run eval:simulated
       - name: Live-model eval (skips cleanly when no API key secret is set)
         run: npm run eval:assistant
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with: { name: eval-assistant, path: evals/reports/ }
       - name: Open an issue when the nightly eval regresses (model drift)

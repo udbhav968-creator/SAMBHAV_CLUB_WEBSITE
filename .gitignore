@@ -12,3 +12,4 @@ evals/reports/*
 *.tmp.ts
 .env.*
 !.env.example
+*.rdb
